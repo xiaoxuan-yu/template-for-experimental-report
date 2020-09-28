@@ -1,0 +1,59 @@
+\documentclass[a4paper, 11pt, UTF8]{scrartcl} % Remplace la classe "article", correspond au standard européen.
+\usepackage{Rapport2}
+\usepackage{babel}
+\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+%\usepackage[toc]{multitoc} double table des matières si nécessaire
+\usepackage{lipsum}
+\clearpairofpagestyles
+%\ctexset{fontset=adobe}
+\setCJKmainfont[BoldFont={黑体}, ItalicFont={楷体}, BoldItalicFont={仿宋}]{宋体}
+\setCJKsansfont{黑体}
+
+
+%%% Paramètres pour les footers et la page de titre
+\newcommand{\lab}{基础物理实验报告}
+\newcommand{\tit}{测定冰的熔化热}
+\newcommand{\nom}{姓名}
+\newcommand{\superv}{学号}
+\newcommand{\depa}{化学与分子工程学院}
+
+\input{headtitre.tex}
+
+
+
+\begin{document}
+\captionsetup{labelfont=bf,textfont=bf,labelsep=period}
+
+
+\maketitle
+
+%\tableofcontents
+%\newpage
+
+
+\section{Introduction}
+\lipsum[7]
+\section{Théorie}
+Soit $f:E\to F$ une fonction dérivable dans $E$. Pour $x\in E$, on a
+\[
+\int_0^x f'(y)\dd{y}=f(x)-f(0).
+\]
+
+\lipsum[19]
+\section{Méthode expérimentale}
+\lipsum[20]
+\section{Résultats et analyse}
+\lipsum[30]
+\section{Conclusion}
+\lipsum[20]
+
+
+
+\printbibliography[heading=bibliography,title=参考文献]
+
+
+
+
+
+
+\end{document}

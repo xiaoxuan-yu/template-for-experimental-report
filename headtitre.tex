@@ -1,0 +1,76 @@
+\automark[section]{section}
+
+\lehead*{%
+  \makebox[0pt][r]{
+    \colorbox{rahmen}{\makebox[\textwidth][r]{\bfseries\color{white}{\pagemark/\pageref*{LastPage}}\enskip}}\hspace*{1em}}%
+  \sffamily\headmark\hspace*{1em}\headrulefill%
+}
+\rohead*{%
+  \makebox[0pt][r]{
+    \colorbox{rahmen}{\makebox[\textwidth][r]{\bfseries\color{white}{\pagemark/\pageref*{LastPage}}\enskip}}\hspace*{1em}}%
+  \sffamily\headmark\hspace*{1em}\headrulefill%
+}
+%\rohead*{%
+%  \headrulefill\hspace*{1em}\headmark%
+%  \makebox[0pt][l]{%
+%    \hspace*{1em}\colorbox{rahmen}{\makebox[\textwidth][l]{\enskip\bfseries\color{white}{\pagemark/%\pageref*{LastPage}}}}}%
+%}
+
+\lefoot{\color{darkgray}\small \number\year \textit{ 年} \number\month \textit{ 月} \number\day \textit{ 日}}
+\rofoot{\color{darkgray}\small \number\year \textit{ 年} \number\month \textit{ 月} \number\day \textit{ 日}}
+\cefoot{\color{darkgray}\small \itshape \tit\unskip\strut}
+\cofoot{\color{darkgray}\small \itshape \tit\unskip\strut}
+\refoot{\color{darkgray}\small \textit\nom\unskip\strut}
+\lofoot{\color{darkgray}\small \textit\nom\unskip\strut}
+
+\addtokomafont{pagenumber}{\bfseries\color{white}}
+\newcommand\headrulefill{\leaders\hrule width 0pt height 3pt depth -2.8pt \hfill}
+
+%\renewcommand\titlepagestyle{empty}
+
+\hfuzz 100pt
+\hbadness 10000
+\hfuzz 100pt
+\hbadness 10000
+
+% Inversion des espaces des marges
+
+%\let\tempmargin\oddsidemargin
+%\let\oddsidemargin\evensidemargin
+%\let\evensidemargin\tempmargin
+\reversemarginpar
+
+\sisetup{detect-weight=true, detect-family=true}
+
+\renewcommand*{\maketitle}{%
+\begin{titlepage}
+\raggedleft\includegraphics[scale=0.5]{PKU1.png}
+
+\begin{center}
+ \textsc{\\ College Of Chemistry And Molecular Engineering, Peking University \unskip\strut}
+\horrule{0.5pt} \\[0.4cm] \vspace{-1.5ex}
+	 { \huge \bfseries \lab \\ \vspace{0.4cm} \tit }\\[0.1cm]\horrule{2pt} \vspace{-2ex}
+\end{center}
+\vspace{1cm}
+
+\vspace{3cm}
+\begin{center}
+   {\large \textit{姓名\ \nom}\unskip\strut}
+\end{center}
+\begin{center}
+    {\large \textit{学号 }\superv\unskip\strut}           
+    \vspace*{0.5cm}
+\end{center}    
+
+\vspace{4cm}
+\begin{center}
+\begin{minipage}[b]{0.5\textwidth}
+    \vfill
+    \begin{center}
+        {\number\year \textit{ 年} \number\month \textit{ 月} \number\day \textit{ 日}}
+    \end{center}    
+\end{minipage}%
+\end{center}
+
+\end{titlepage}
+}
