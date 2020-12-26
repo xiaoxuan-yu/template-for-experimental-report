@@ -1,0 +1,218 @@
+% ku-frontpage.sty                                                  06 Dec 2018
+%------------------------------------------------------------------------------
+% Copyright (c) 2017 by M.O.Larsen.
+% Distributed under the terms of the GNU General Public License v3.0.
+%
+% LaTeX style for front pages adhering to University of Copenhagen's design
+% guide (http://http://designguide.ku.dk/) for science and sund faculty,
+% and main KU-style.
+%
+% Author:
+%   Mads Ohm Larsen <ohm@nbi.ku.dk>
+%
+% Inspired by Christian Aastrups package 'ku-forside' from 2007
+% (http://www.math.ku.dk/~m00cha/), however translated all call to their
+% English equivalant and included newer logos.
+%------------------------------------------------------------------------------
+\ProvidesPackage{ku-frontpage}[2018/12/06 v0.5 Frontpages with University of Copenhagen logos]
+
+%%% Define 'if''s for style.
+\newif\if@kutitlepage\@kutitlepagefalse \DeclareOption{titlepage}{\@kutitlepagetrue}
+\newif\if@kusmall\@kusmallfalse         \DeclareOption{small}{\@kusmalltrue}
+\newif\if@kularge\@kulargefalse         \DeclareOption{large}{\@kulargetrue}
+
+%%% Define 'if''s for language.
+\newif\if@kuenglish                     \DeclareOption{english}{\@kuenglishtrue \PassOptionsToPackage{\CurrentOption}{babel}}
+\newif\if@kudanish                      \DeclareOption{danish}{\@kudanishtrue   \PassOptionsToPackage{\CurrentOption}{babel}}
+
+%%% Define 'if''s for faculties.
+\newif\if@science                       \DeclareOption{science}{\@sciencetrue}
+\newif\if@sund                          \DeclareOption{sund}{\@sundtrue}
+\newif\if@ku                            \DeclareOption{ku}{\@kutrue}
+
+%%% Define 'if''s for other things.
+\newif\if@hyperref                      \DeclareOption{hyperref}{\@hyperreftrue}
+\newif\if@dropcaps                      \DeclareOption{dropcaps}{\@dropcapstrue}
+
+%%% Warning about unknown options
+\DeclareOption*{
+  \ClassWarning{ku-frontpage}{Unknown option '\CurrentOption'}
+}
+
+%%% Define standard values.
+\ExecuteOptions{titlepage}
+\ExecuteOptions{english}
+\ExecuteOptions{science}
+
+%%% No more options.
+\ProcessOptions\relax
+
+%%% Parse options.
+\if@kutitlepage \def\KUSTYLE{titlepage} \fi
+\if@kusmall     \def\KUSTYLE{small}     \fi
+\if@kularge     \def\KUSTYLE{large}     \fi
+
+\if@kuenglish   \def\KULANG{english}    \fi
+\if@kudanish    \def\KULANG{danish}     \fi
+
+\if@science     \def\KUFACULTY{science} \fi
+\if@sund        \def\KUFACULTY{sund}    \fi
+\if@ku          \def\KUFACULTY{ku}      \fi
+
+%%% Some packages are required for this package.
+\RequirePackage{babel}
+\RequirePackage{eso-pic}
+\RequirePackage{graphicx}
+\RequirePackage{times}
+\RequirePackage{ifthen}
+
+\definecolor{KU}{HTML}{901A1E}
+\definecolor{KUscience}{HTML}{46743C}
+\definecolor{KUsund}{HTML}{2A216A}
+
+\if@science \def\KUCOLOR{KUscience} \fi
+\if@sund    \def\KUCOLOR{KUsund}    \fi
+\if@ku      \def\KUCOLOR{KU}        \fi
+
+%%% Define the page to have 12 horizontal modules and 24 vertical modules.
+\RequirePackage[absolute]{textpos}
+\TPGrid{12}{24}
+
+%%% Define custom methods for frontpage.
+\def\ASSIGNMENT{Use \texttt{$\backslash$assignment$\lbrace \ldots \rbrace$}}
+\def\AUTHOR{Use \texttt{$\backslash$author$\lbrace \ldots \rbrace$}}
+\def\TITLE{Use \texttt{$\backslash$title$\lbrace \ldots \rbrace$}}
+\def\SUBTITLE{Use \texttt{$\backslash$subtitle$\lbrace \ldots \rbrace$}}
+\def\ADVISOR{Use \texttt{$\backslash$advisor$\lbrace \ldots \rbrace$}}
+\def\DATE{Use \texttt{$\backslash$date$\lbrace \ldots \rbrace$}}
+\def\FRONTPAGEIMAGE{}
+
+%%% Some of the above methods already exists. We override these.
+\renewcommand{\author}[1]{\def\AUTHOR{#1}}
+\renewcommand{\title}[1]{\def\TITLE{#1}}
+\renewcommand{\date}[1]{\def\DATE{#1}}
+
+%%% The rest are defined.
+\newcommand{\assignment}[1]{\def\ASSIGNMENT{#1}}
+\newcommand{\subtit}[1]{\def\SUBTITLE{#1}}
+\newcommand{\advisor}[1]{\def\ADVISOR{#1}}
+\newcommand{\frontpageimage}[1]{\def\FRONTPAGEIMAGE{#1}}
+
+%%% Include hyperref for PDF attributes.
+\if@hyperref
+  \RequirePackage{hyperref}
+  \newcommand{\kupdfsetup}[3]{
+    \hypersetup{
+      pdftitle={#1},
+      pdfsubject={#2},
+      pdfauthor={#3},
+      colorlinks=true,
+      citecolor={\KUCOLOR},
+      linkcolor={\KUCOLOR},
+      urlcolor={\KUCOLOR},
+    }
+  }
+\fi
+
+%%% Define drop caps
+\if@dropcaps
+  \RequirePackage{lettrine}
+
+  \renewcommand\LettrineFontHook{\color{\KUCOLOR}}
+  \renewcommand{\DefaultOptionsFile}{NoFileOnPurposeHack.cfg}
+
+  \LettrineOptionsFor{A}{loversize= 0.05,lhang= 0.10,findent= 0.000\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{B}{loversize= 0.10,lhang= 0.30,findent= 0.025\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{C}{loversize= 0.00,lhang= 0.15,findent= 0.175\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{D}{loversize= 0.10,lhang= 0.30,findent=-0.025\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{E}{loversize= 0.10,lhang= 0.10,findent= 0.100\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{F}{loversize= 0.10,lhang= 0.30,findent= 0.100\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{G}{loversize=-0.08,lhang= 0.10,findent= 0.000\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{H}{loversize=-0.01,lhang= 0.00,findent= 0.040\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{I}{loversize= 0.10,lhang= 0.00,findent= 0.050\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{J}{loversize=-0.08,lhang= 0.00,findent=-0.025\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{K}{loversize=-0.05,lhang= 0.00,findent=-0.050\LettrineWidth,nindent= 0.60\LettrineWidth}
+  \LettrineOptionsFor{L}{loversize= 0.00,lhang= 0.00,findent= 0.100\LettrineWidth,nindent= 0.40\LettrineWidth}
+  \LettrineOptionsFor{M}{loversize= 0.10,lhang= 0.40,findent= 0.040\LettrineWidth,nindent= 0.10\LettrineWidth}
+  \LettrineOptionsFor{N}{loversize= 0.00,lhang= 0.20,findent=-0.010\LettrineWidth,nindent= 0.40\LettrineWidth}
+  \LettrineOptionsFor{O}{loversize= 0.10,lhang= 0.20,findent=-0.010\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{P}{loversize= 0.10,lhang= 0.30,findent= 0.050\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{Q}{loversize= 0.00,lhang= 0.20,findent= 0.050\LettrineWidth,nindent= 0.70\LettrineWidth}
+  \LettrineOptionsFor{R}{loversize=-0.05,lhang= 0.25,nindent= 0.500\LettrineWidth,nindent= 0.50\LettrineWidth}
+  \LettrineOptionsFor{S}{loversize= 0.10,lhang= 0.00,findent= 0.000\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{T}{loversize= 0.10,lhang= 0.35,findent= 0.100\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{U}{loversize= 0.10,lhang= 0.20,findent= 0.050\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{V}{loversize= 0.10,lhang= 0.40,findent= 0.050\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{W}{loversize= 0.10,lhang= 0.30,findent= 0.040\LettrineWidth,nindent= 0.50em}
+  \LettrineOptionsFor{X}{loversize= 0.10,lhang= 0.40,findent= 0.040\LettrineWidth,nindent= 0.20\LettrineWidth}
+  \LettrineOptionsFor{Y}{loversize= 0.10,lhang= 0.20,findent= 0.100\LettrineWidth,nindent= 0.20\LettrineWidth}
+  \LettrineOptionsFor{Z}{loversize=-0.05,lhang= 0.00,findent= 0.050\LettrineWidth,nindent= 0.55\LettrineWidth}
+\fi
+
+%%% Define the three types of frontpage
+\if@kutitlepage
+  \def\KUbold{\fontfamily{phv}\fontseries{bx}\selectfont}
+  \def\KUsemibold{\fontfamily{phv}\fontseries{sb}\selectfont}
+
+  \def\maketitle{
+    \thispagestyle{empty}
+    \AddToShipoutPicture*{\put( 0, -35){\includegraphics*{logos/\KUFACULTY-logo}}}
+    \AddToShipoutPicture*{\put(-8,   8){\includegraphics*{logos/\KUFACULTY-\KULANG}}}
+
+    \ifthenelse{\equal{\FRONTPAGEIMAGE}{}}{}{
+      \AddToShipoutPicture*{
+        \AtPageUpperLeft{\raisebox{-185mm}{\hspace{55pt}\includegraphics*[width=\textwidth, height=100mm, keepaspectratio]{\FRONTPAGEIMAGE}}}
+      }
+    }
+
+    \begin{textblock}{10}(1.14, 15.9)
+      \noindent\fontsize{18pt}{20pt}\KUbold\ASSIGNMENT
+      \par\vspace{4mm}
+      \noindent\fontsize{14pt}{16pt}\KUsemibold\AUTHOR
+    \end{textblock}
+
+    \begin{textblock}{10}(1.14, 18.2)
+      \noindent\fontsize{22pt}{24pt}\KUsemibold\textbf{\TITLE}
+      \par\vspace{2mm}
+      \noindent\fontsize{14pt}{16pt}\KUsemibold\textbf{\SUBTITLE}
+    \end{textblock}
+
+    \begin{textblock}{10}(1.14, 21.35)
+      \noindent\fontsize{11pt}{12pt}\KUsemibold\ADVISOR
+      \par\vspace{5mm}
+      \noindent\fontsize{11pt}{12pt}\KUsemibold\DATE
+    \end{textblock}
+
+    \phantom{...}
+    \newpage
+    \noindent
+  }
+\fi
+
+\if@kusmall
+  \def\maketitle{
+    \thispagestyle{plain}
+    \AddToShipoutPicture*{\put(35,  83){\includegraphics*[scale=0.88]{logos/\KUFACULTY-logo}}}
+    \AddToShipoutPicture*{\put(79, 755){\large{\textbf{\TITLE}}}}
+    \AddToShipoutPicture*{\put(79, 733){\SUBTITLE}}
+    \AddToShipoutPicture*{\put(79, 715){\small{\emph{\AUTHOR}}}}
+    \AddToShipoutPicture*{\put(79, 702){\scriptsize{\DATE}}}
+    \phantom{...}
+    \vspace*{3.2cm}
+    \noindent
+  }
+\fi
+
+\if@kularge
+  \def\maketitle{
+    \thispagestyle{plain}
+    \AddToShipoutPicture*{\put(-220, -310){\includegraphics*[scale=1.4]{logos/\KUFACULTY-logo}}}
+    \AddToShipoutPicture*{\put(79, 755){\LARGE{\textbf{\TITLE}}}}
+    \AddToShipoutPicture*{\put(79, 723){\Large{\SUBTITLE}}}
+    \AddToShipoutPicture*{\put(79, 695){\normalsize{\emph{\AUTHOR}}}}
+    \AddToShipoutPicture*{\put(79, 670){\footnotesize{\DATE}}}
+    \phantom{...}
+    \vspace*{5cm}
+    \noindent
+  }
+\fi
