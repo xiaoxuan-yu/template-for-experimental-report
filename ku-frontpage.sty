@@ -79,12 +79,12 @@
 \TPGrid{12}{24}
 
 %%% Define custom methods for frontpage.
-\def\ASSIGNMENT{Use \texttt{$\backslash$assignment$\lbrace \ldots \rbrace$}}
-\def\AUTHOR{Use \texttt{$\backslash$author$\lbrace \ldots \rbrace$}}
-\def\TITLE{Use \texttt{$\backslash$title$\lbrace \ldots \rbrace$}}
-\def\SUBTITLE{Use \texttt{$\backslash$subtitle$\lbrace \ldots \rbrace$}}
-\def\ADVISOR{Use \texttt{$\backslash$advisor$\lbrace \ldots \rbrace$}}
-\def\DATE{Use \texttt{$\backslash$date$\lbrace \ldots \rbrace$}}
+\def\ASSIGNMENT{Use {$\backslash$assignment$\lbrace \ldots \rbrace$}}
+\def\AUTHOR{Use {$\backslash$author$\lbrace \ldots \rbrace$}}
+\def\TITLE{Use {$\backslash$title$\lbrace \ldots \rbrace$}}
+\def\SUBTITLE{Use {$\backslash$subtitle$\lbrace \ldots \rbrace$}}
+\def\ADVISOR{Use {$\backslash$advisor$\lbrace \ldots \rbrace$}}
+\def\DATE{Use {$\backslash$date$\lbrace \ldots \rbrace$}}
 \def\FRONTPAGEIMAGE{}
 
 %%% Some of the above methods already exists. We override these.
@@ -166,21 +166,21 @@
     }
 
     \begin{textblock}{10}(1.14, 15.9)
-      \noindent\fontsize{18pt}{20pt}\KUbold\ASSIGNMENT
+      \noindent\fontsize{18pt}{20pt}\KUbold\textsf{\ASSIGNMENT}
       \par\vspace{4mm}
-      \noindent\fontsize{14pt}{16pt}\KUsemibold\AUTHOR
+      \noindent\fontsize{14pt}{16pt}\KUsemibold\textsf{\AUTHOR}
     \end{textblock}
 
     \begin{textblock}{10}(1.14, 18.2)
-      \noindent\fontsize{22pt}{24pt}\KUsemibold\textbf{\TITLE}
+      \noindent\fontsize{22pt}{24pt}\KUsemibold\textsf{\TITLE}
       \par\vspace{2mm}
-      \noindent\fontsize{14pt}{16pt}\KUsemibold\textbf{\SUBTITLE}
+      \noindent\fontsize{14pt}{16pt}\KUsemibold\textsf{\SUBTITLE}
     \end{textblock}
 
     \begin{textblock}{10}(1.14, 21.35)
-      \noindent\fontsize{11pt}{12pt}\KUsemibold\ADVISOR
+      \noindent\fontsize{11pt}{12pt}\KUsemibold\textsf{\ADVISOR}
       \par\vspace{5mm}
-      \noindent\fontsize{11pt}{12pt}\KUsemibold\DATE
+      \noindent\fontsize{11pt}{12pt}\KUsemibold\textsf{\DATE}
     \end{textblock}
 
     \phantom{...}
@@ -193,10 +193,10 @@
   \def\maketitle{
     \thispagestyle{plain}
     \AddToShipoutPicture*{\put(35,  83){\includegraphics*[scale=0.88]{logos/\KUFACULTY-logo}}}
-    \AddToShipoutPicture*{\put(79, 755){\large{\textbf{\TITLE}}}}
-    \AddToShipoutPicture*{\put(79, 733){\SUBTITLE}}
-    \AddToShipoutPicture*{\put(79, 715){\small{\emph{\AUTHOR}}}}
-    \AddToShipoutPicture*{\put(79, 702){\scriptsize{\DATE}}}
+    \AddToShipoutPicture*{\put(79, 755){\large{\textsf{\TITLE}}}}
+    \AddToShipoutPicture*{\put(79, 733){\textsf{\SUBTITLE}}}
+    \AddToShipoutPicture*{\put(79, 715){\small{\textsf{\AUTHOR}}}}
+    \AddToShipoutPicture*{\put(79, 702){\scriptsize{\textsf{\DATE}}}}
     \phantom{...}
     \vspace*{3.2cm}
     \noindent
@@ -207,10 +207,10 @@
   \def\maketitle{
     \thispagestyle{plain}
     \AddToShipoutPicture*{\put(-220, -310){\includegraphics*[scale=1.4]{logos/\KUFACULTY-logo}}}
-    \AddToShipoutPicture*{\put(79, 755){\LARGE{\textbf{\TITLE}}}}
-    \AddToShipoutPicture*{\put(79, 723){\Large{\SUBTITLE}}}
-    \AddToShipoutPicture*{\put(79, 695){\normalsize{\emph{\AUTHOR}}}}
-    \AddToShipoutPicture*{\put(79, 670){\footnotesize{\DATE}}}
+    \AddToShipoutPicture*{\put(79, 755){\LARGE{\textsf{\TITLE}}}}
+    \AddToShipoutPicture*{\put(79, 723){\Large{\textsf{\SUBTITLE}}}}
+    \AddToShipoutPicture*{\put(79, 695){\normalsize{{\textsf{\AUTHOR}}}}}
+    \AddToShipoutPicture*{\put(79, 670){\footnotesize{\textsf{\DATE}}}}
     \phantom{...}
     \vspace*{5cm}
     \noindent

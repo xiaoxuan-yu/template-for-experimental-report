@@ -2,25 +2,23 @@
 \usepackage{Rapport2}
 \usepackage[english, ku, titlepage, dropcaps]{ku-frontpage}
 \usepackage[backend=biber,style=gb7714-2015]{biblatex}
-\usepackage{minted}
+%\usepackage{minted}
 \clearpairofpagestyles
-\setCJKmainfont[BoldFont={黑体}, ItalicFont={楷体}, BoldItalicFont={仿宋}]{宋体}
-\setCJKsansfont{黑体}
 \providetoggle{blx@lang@captions@english}
 \input{headtitre.tex}
 
-%%% 文档信息设置,英文文档需删去\textbf命令
+%%% 文档信息设置
 \newcommand{\lab}{作业名称}
 \newcommand{\tit}{标题}
 \newcommand{\nom}{姓名}
 \newcommand{\superv}{学号}
 \newcommand{\depa}{院系}
 \assignment{\lab}
-\author{\textbf{\nom\hspace{4em} \superv}}
+\author{\nom\hspace{4em} \superv}
 \title{\tit}
 \subtit{副标题}
-\advisor{\textbf{指导教师}}
-\date{\textbf{上交时间: \today}}
+\advisor{指导教师}
+\date{上交时间: \today}
 \frontpageimage{example.png}
 
 
