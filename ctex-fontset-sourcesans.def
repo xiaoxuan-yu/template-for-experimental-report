@@ -103,7 +103,7 @@
         \ctex_set_upfamily:nnn { zhkai } { upzhserifit } {}
       }
       {
-        \setCJKmainfont { Source~Han~Serif~CN }
+        \setCJKmainfont [ItalicFont = FZNewKai-Z03]{ Source~Han~Serif~CN }
         \setCJKsansfont { Source~Han~Sans~SC }
         \setCJKmonofont [ Extension = .otf ] { FandolFang-Regular }
         \setCJKfamilyfont { zhsong }{ Source~Han~Serif~CN }
