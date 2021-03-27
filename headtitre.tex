@@ -1,6 +1,5 @@
 \automark[section]{section}
 \usepackage{verbatim}
-\usepackage[fontset=sourcesans]{ctex}
 
 \lehead*{%
   \makebox[0pt][r]{
@@ -18,12 +17,12 @@
 %    \hspace*{1em}\colorbox{rahmen}{\makebox[\textwidth][l]{\enskip\bfseries\color{white}{\pagemark/%\pageref*{LastPage}}}}}%
 %}
 
-\lefoot{\color{darkgray}\small \number\year \textit{ 年} \number\month \textit{ 月} \number\day \textit{ 日}}
-\rofoot{\color{darkgray}\small \number\year \textit{ 年} \number\month \textit{ 月} \number\day \textit{ 日}}
-\cefoot{\color{darkgray}\small \textit{\tit}\unskip\strut}
-\cofoot{\color{darkgray}\small \textit{\tit}\unskip\strut}
-\refoot{\color{darkgray}\small \textit{\nom}\unskip\strut}
-\lofoot{\color{darkgray}\small \textit{\nom}\unskip\strut}
+\ofoot{\color{darkgray}\small \number\year \textit{ 年} \number\month \textit{ 月} \number\day \textit{ 日}}
+%\rofoot{\color{darkgray}\small \number\year \textit{ 年} \number\month \textit{ 月} \number\day \textit{ 日}}
+\cfoot{\color{darkgray}\small \textit\tit\unskip\strut}
+%\cofoot{\color{darkgray}\small \itshape \tit\unskip\strut}
+\ifoot{\color{darkgray}\small \textit\nom\unskip\strut}
+%\lofoot{\color{darkgray}\small \textit\nom\unskip\strut}
 
 \addtokomafont{pagenumber}{\bfseries\color{white}}
 \newcommand\headrulefill{\leaders\hrule width 0pt height 3pt depth -2.8pt \hfill}
@@ -77,3 +76,14 @@
 \end{titlepage}
 }
 \end{comment}
+\newpairofpagestyles{rpheadings}
+{
+\ofoot{\color{darkgray}\small \number\year \textit{ 年} \number\month \textit{ 月} \number\day \textit{ 日}}
+\cfoot{\color{darkgray}\small \itshape \tit\unskip\strut}
+\ifoot{\color{darkgray}\small \textit\nom\unskip\strut}
+\addtokomafont{pagenumber}{\bfseries\color{white}}
+\hfuzz 100pt
+\hbadness 10000
+\hfuzz 100pt
+\hbadness 10000
+}
